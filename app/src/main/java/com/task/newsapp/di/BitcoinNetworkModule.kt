@@ -1,5 +1,7 @@
 package com.task.newsapp.di
 
+import androidx.compose.ui.unit.Constraints
+import com.task.newsapp.Constants
 import com.task.newsapp.network.BitcoinApiServices
 import dagger.Module
 import dagger.Provides
@@ -27,7 +29,7 @@ object BitcoinNetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient):Retrofit{
         return Retrofit.Builder()
-            .baseUrl("https://newsapi.org/")
+            .baseUrl(Constants.baseURL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
