@@ -1,6 +1,6 @@
 package com.task.newsapp.repositories
 
-import com.task.newsapp.model.Article
+
 import com.task.newsapp.model.BitcoinResponse
 import com.task.newsapp.network.BitcoinApiServices
 

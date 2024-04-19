@@ -1,6 +1,5 @@
 package com.task.newsapp.di
 
-import androidx.compose.ui.unit.Constraints
 import com.task.newsapp.Constants
 import com.task.newsapp.network.BitcoinApiServices
 import dagger.Module
@@ -13,13 +12,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+
 @Module
 @InstallIn(SingletonComponent::class)
 object BitcoinNetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient ():OkHttpClient{
+    fun provideOkHttpClient (): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(30,TimeUnit.SECONDS)
             .readTimeout(30,TimeUnit.SECONDS)
@@ -27,7 +27,7 @@ object BitcoinNetworkModule {
     }
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient):Retrofit{
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.baseURL)
             .client(okHttpClient)
@@ -37,7 +37,7 @@ object BitcoinNetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiServices(retrofit: Retrofit):BitcoinApiServices{
+    fun provideApiServices(retrofit: Retrofit): BitcoinApiServices {
         return retrofit.create(BitcoinApiServices::class.java)
     }
 

@@ -15,7 +15,12 @@ import javax.inject.Inject
 class BitcoinViewModel @Inject constructor(private val bitcoinRepo: BitcoinRepo): ViewModel(){
     private val _Bitcoin : MutableStateFlow<BitcoinResponse?> = MutableStateFlow(null)
     val Bitcoin : MutableStateFlow<BitcoinResponse?> = _Bitcoin
+init {
+    viewModelScope.launch {
+        getBitcoin()
+    }
 
+}
 
     private suspend fun getBitcoin() {
         viewModelScope.launch {

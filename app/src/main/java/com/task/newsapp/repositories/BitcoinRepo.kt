@@ -1,8 +1,9 @@
 package com.task.newsapp.repositories
 
-import com.task.newsapp.model.Article
+
 import com.task.newsapp.model.BitcoinResponse
-import kotlinx.coroutines.flow.Flow
+import dagger.Provides
+
 
 
 interface BitcoinRepo {
