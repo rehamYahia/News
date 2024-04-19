@@ -17,19 +17,22 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.task.newsapp.viewmodel.BitcoinViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 
 
 @AndroidEntryPoint
@@ -37,7 +40,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BitcoinArticals()
+            NewsApp()
         }
     }
 }
@@ -64,11 +67,11 @@ fun BitcoinArticals(viewModel: BitcoinViewModel = hiltViewModel()) {
 
 @Composable
 fun BitcoinItem(
-                auther: String,
-                title: String,
-                description: String,
+                auther: String?=null,
+                title: String?=null,
+                description: String?=null,
                 urlToImage: String?=null,
-                publishedAt: String,
+                publishedAt: String?=null,
 ) {
 
        Row (modifier = Modifier.padding(10.dp)){
@@ -104,3 +107,82 @@ fun BitcoinItem(
 fun GreetingPreview() {
         BitcoinItem("fbfcvfnv","gbdb "," dch","c bc b","bbhbchd")
 }
+
+
+
+//-------------------------------
+
+
+@Composable
+fun HomeScreen() {
+    BitcoinArticals()
+}
+
+@Composable
+fun FavouritScreen() {
+
+}
+
+sealed class Screen(val route: String, val title: String) {
+    object Home : Screen("home", "Home")
+    object Profile : Screen("profile", "Profile")
+
+    // Add more screens as needed
+}
+
+@Composable
+fun BottomNavigationBar(
+    navController: NavController,
+    items: List<Screen>
+) {
+
+    BottomNavigation {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+
+        items.forEach { screen ->
+            BottomNavigationItem(
+                icon = { /* Icon for the screen */ },
+                label = { Text(text = screen.title) },
+                selected = currentRoute == screen.route,
+                onClick = {
+                    navController.navigate(screen.route) {
+                        // Pop up to the start destination of the graph to
+                        // avoid building up a large stack of destinations
+                        // on the back stack as users select items
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
+                        // Avoid multiple copies of the same destination when
+                        // reselecting the same item
+                        launchSingleTop = true
+                        // Restore state when reselecting a previously selected item
+                        restoreState = true
+                    }
+                }
+            )
+        }
+    }
+}
+
+
+@Composable
+fun NewsApp() {
+    val navController = rememberNavController()
+
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Home.route
+    ) {
+        composable(Screen.Home.route) { HomeScreen() }
+        composable(Screen.Profile.route) { FavouritScreen() }
+
+        // Add more composable destinations as needed
+    }
+
+    BottomNavigationBar(navController = navController, items = listOf(Screen.Home, Screen.Profile))
+}
+
+
+
+
