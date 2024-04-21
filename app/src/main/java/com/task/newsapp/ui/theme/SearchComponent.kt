@@ -28,6 +28,7 @@ fun search(modifier: Modifier = Modifier)
             .heightIn(56.dp),
         colors = TextFieldDefaults.textFieldColors(backgroundColor= MaterialTheme.colors.surface),
         leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
+        shape = androidx.compose.material3.MaterialTheme.shapes.medium
     )
 }
 

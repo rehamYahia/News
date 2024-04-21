@@ -45,20 +45,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-//@Composable
-//fun NewsApp(modifier: Modifier = Modifier ) {
-//    val navController = rememberNavController()
-//
-//
-//
-//Scaffold (
-//    bottomBar = {BottomNavigationBar(navController = navController, items = listOf(Screen.Home, Screen.Profile))}
-//){
-//    Navigation()
-//}
-//
-//}
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -70,55 +56,46 @@ fun App(modifier: Modifier = Modifier) {
         startDestination = Screen.Home.route
     ) {
         composable(Screen.Home.route) { HomeScreen() }
-        composable(Screen.Profile.route) { FavouritScreen() }
+        composable(Screen.Favourit.route) { FavouritScreen() }
 
-        // Add more composable destinations as needed
-    }
-
-    Scaffold(
-        bottomBar = {
-            BottomNavigationBar(navController)
-        }
-    ){
-        modifier.padding(it)
     }
 
 
 }
 
-@Composable
-fun BottomNavigationBar(navController: NavController) {
-    val items: List<Screen> = listOf(Screen.Home, Screen.Profile)
-
-    BottomNavigation(
-        modifier = Modifier.fillMaxWidth(),
-        backgroundColor = colorResource(id = R.color.black),
-        contentColor = Color.White,
-        elevation = 8.dp
-    ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-        items.forEach { screen ->
-            BottomNavigationItem(
-                icon = { Icon(imageVector = screen.icon, contentDescription = null) },
-                label = { Text(text = screen.title) },
-                selected = currentRoute == screen.route,
-                selectedContentColor = Color.White,
-                unselectedContentColor = Color.White.copy(0.4f),
-                alwaysShowLabel = true,
-                onClick = {
-                    navController.navigate(screen.route) {
-                        popUpTo(navController.graph.startDestinationId) {
-                            saveState = true
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                }
-            )
-        }
-    }
-}
+//@Composable
+//fun BottomNavigationBar(navController: NavController) {
+//    val items: List<Screen> = listOf(Screen.Home, Screen.Favourit)
+//
+//    BottomNavigation(
+//        modifier = Modifier.fillMaxWidth(),
+//        backgroundColor = colorResource(id = R.color.black),
+//        contentColor = Color.White,
+//        elevation = 8.dp
+//    ) {
+//        val navBackStackEntry by navController.currentBackStackEntryAsState()
+//        val currentRoute = navBackStackEntry?.destination?.route
+//        items.forEach { screen ->
+//            BottomNavigationItem(
+//                icon = { Icon(imageVector = screen.icon, contentDescription = null) },
+//                label = { Text(text = screen.title) },
+//                selected = currentRoute == screen.route,
+//                selectedContentColor = Color.White,
+//                unselectedContentColor = Color.White.copy(0.4f),
+//                alwaysShowLabel = true,
+//                onClick = {
+//                    navController.navigate(screen.route) {
+//                        popUpTo(navController.graph.startDestinationId) {
+//                            saveState = true
+//                        }
+//                        launchSingleTop = true
+//                        restoreState = true
+//                    }
+//                }
+//            )
+//        }
+//    }
+//}
 
 
 

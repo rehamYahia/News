@@ -11,13 +11,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AppleViewModel @Inject constructor(val articalRepo: ArticalRepo):ViewModel() {
+class AppleViewModel @Inject constructor(private val articalRepo: ArticalRepo):ViewModel() {
 
     private val _Apple: MutableStateFlow<AppleResponse?> = MutableStateFlow(null)
-    val Apple :StateFlow<AppleResponse?> get() = _Apple
+    val Apple  get() = _Apple
 
+init {
+    viewModelScope.launch {
+        getAppleArtical()
+    }
 
-    suspend fun getAppleArtical(){
+}
+    private suspend fun getAppleArtical(){
         viewModelScope.launch {
             _Apple.value = articalRepo.getAllAppleArtical()
         }

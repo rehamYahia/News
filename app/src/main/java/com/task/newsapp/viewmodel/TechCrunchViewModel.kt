@@ -16,6 +16,11 @@ class TechCrunchViewModel @Inject constructor(val articalRepo: ArticalRepo):View
     private val _TechCrunch: MutableStateFlow<TechCrunchResponse?> = MutableStateFlow(null)
     val TechCrunch : StateFlow<TechCrunchResponse?> get() = _TechCrunch
 
+    init {
+        viewModelScope.launch {
+            getAppleArtical()
+        }
+    }
     suspend fun getAppleArtical(){
         viewModelScope.launch {
             _TechCrunch.value = articalRepo.getAllTechCrunchArtical()
