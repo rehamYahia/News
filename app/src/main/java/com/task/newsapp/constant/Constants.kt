@@ -1,4 +1,4 @@
-package com.task.newsapp
+package com.task.newsapp.constant
 
 class Constants {
     companion object{

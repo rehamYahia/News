@@ -107,7 +107,7 @@ fun BitcoinItem(
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.Red
                     )
-                    
+
                 }
 
                 Spacer(modifier = Modifier.padding(5.dp))

@@ -1,6 +1,6 @@
 package com.task.newsapp.di
 
-import com.task.newsapp.Constants
+import com.task.newsapp.constant.Constants
 import com.task.newsapp.network.BitcoinApiServices
 import dagger.Module
 import dagger.Provides
