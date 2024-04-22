@@ -4,12 +4,11 @@ package com.task.newsapp.repositories
 import com.task.newsapp.database.dao.ArticalsDao
 import com.task.newsapp.database.db.ArticalDatabase
 import com.task.newsapp.database.entity.ArticleDB
-import com.task.newsapp.database.entity.DatabaseResponse
 import com.task.newsapp.model.AppleResponse
 import com.task.newsapp.model.BitcoinResponse
 import com.task.newsapp.model.TechCrunchResponse
 import com.task.newsapp.network.BitcoinApiServices
-
+import kotlinx.coroutines.flow.Flow
 
 
 class ArticalRepoImp (private val bitcoinApiServices: BitcoinApiServices , private val articalsDao: ArticalsDao):ArticalRepo{
@@ -27,12 +26,14 @@ class ArticalRepoImp (private val bitcoinApiServices: BitcoinApiServices , priva
     }
 
     //..local
-    override suspend fun insertArticalToDatabase(articalDB: ArticleDB) {
-      articalsDao.insertArticalToDatabase(articalDB)
+
+    override suspend fun insertArticalToDatabase(article: ArticleDB) {
+      articalsDao.insert(article)
     }
 
-    override suspend fun getArticalsFromDatabase(): DatabaseResponse {
-        return articalsDao.getArticalFromDatabase()
+
+    override suspend fun getArticalsFromDatabase(): Flow<List<ArticleDB>> {
+        return articalsDao.getAllArticles()
     }
 
 

@@ -3,10 +3,10 @@ package com.task.newsapp.repositories
 
 import com.task.newsapp.database.db.ArticalDatabase
 import com.task.newsapp.database.entity.ArticleDB
-import com.task.newsapp.database.entity.DatabaseResponse
 import com.task.newsapp.model.AppleResponse
 import com.task.newsapp.model.BitcoinResponse
 import com.task.newsapp.model.TechCrunchResponse
+import kotlinx.coroutines.flow.Flow
 
 
 interface ArticalRepo {
@@ -18,8 +18,8 @@ interface ArticalRepo {
     suspend fun getAllTechCrunchArtical():TechCrunchResponse
 
     //..local
-    suspend fun insertArticalToDatabase(articalDB: ArticleDB)
-    suspend fun getArticalsFromDatabase(): DatabaseResponse
+    suspend fun insertArticalToDatabase(article: ArticleDB)
+    suspend fun getArticalsFromDatabase():Flow<List<ArticleDB>>
 
 
 }

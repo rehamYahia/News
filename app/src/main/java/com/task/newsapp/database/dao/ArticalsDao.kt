@@ -1,19 +1,23 @@
 package com.task.newsapp.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.task.newsapp.database.entity.ArticleDB
-import com.task.newsapp.database.entity.DatabaseResponse
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ArticalsDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertArticalToDatabase(articleDB: ArticleDB)
-
     @Query("SELECT * FROM ArticleTable")
-    fun getArticalFromDatabase() : DatabaseResponse
+    fun getAllArticles(): Flow<List<ArticleDB>>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(article: ArticleDB)
+
+    @Delete
+    suspend fun delete(article: ArticleDB)
 
 
 }

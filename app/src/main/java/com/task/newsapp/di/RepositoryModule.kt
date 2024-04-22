@@ -1,5 +1,6 @@
 package com.task.newsapp.di
 
+import com.task.newsapp.database.dao.ArticalsDao
 import com.task.newsapp.network.BitcoinApiServices
 import com.task.newsapp.repositories.ArticalRepo
 import com.task.newsapp.repositories.ArticalRepoImp
@@ -15,8 +16,8 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideBitcoinRepo(bitcoinApiServices: BitcoinApiServices):ArticalRepo{
-        return ArticalRepoImp(bitcoinApiServices)
+    fun provideBitcoinRepo(bitcoinApiServices: BitcoinApiServices , articalsDao: ArticalsDao):ArticalRepo{
+        return ArticalRepoImp(bitcoinApiServices, articalsDao)
     }
 
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
@@ -15,9 +16,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -37,8 +40,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NewsAppTheme {
-//               NewsApp()
-                App()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    MyBottomAppBar()
+                }
             }
 
         }
@@ -46,56 +53,6 @@ class MainActivity : ComponentActivity() {
 }
 
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-@Composable
-fun App(modifier: Modifier = Modifier) {
-    val navController = rememberNavController()
-
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Home.route
-    ) {
-        composable(Screen.Home.route) { HomeScreen() }
-        composable(Screen.Favourit.route) { FavouritScreen() }
-
-    }
-
-
-}
-
-//@Composable
-//fun BottomNavigationBar(navController: NavController) {
-//    val items: List<Screen> = listOf(Screen.Home, Screen.Favourit)
-//
-//    BottomNavigation(
-//        modifier = Modifier.fillMaxWidth(),
-//        backgroundColor = colorResource(id = R.color.black),
-//        contentColor = Color.White,
-//        elevation = 8.dp
-//    ) {
-//        val navBackStackEntry by navController.currentBackStackEntryAsState()
-//        val currentRoute = navBackStackEntry?.destination?.route
-//        items.forEach { screen ->
-//            BottomNavigationItem(
-//                icon = { Icon(imageVector = screen.icon, contentDescription = null) },
-//                label = { Text(text = screen.title) },
-//                selected = currentRoute == screen.route,
-//                selectedContentColor = Color.White,
-//                unselectedContentColor = Color.White.copy(0.4f),
-//                alwaysShowLabel = true,
-//                onClick = {
-//                    navController.navigate(screen.route) {
-//                        popUpTo(navController.graph.startDestinationId) {
-//                            saveState = true
-//                        }
-//                        launchSingleTop = true
-//                        restoreState = true
-//                    }
-//                }
-//            )
-//        }
-//    }
-//}
 
 
 
