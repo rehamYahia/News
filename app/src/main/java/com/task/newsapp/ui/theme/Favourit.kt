@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -47,11 +48,18 @@ import com.task.newsapp.database.entity.ArticleDB
 import com.task.newsapp.viewmodel.DatabaseViewmodel
 import kotlinx.coroutines.launch
 
+
 @Composable
-fun FavouritScreen( modifier:Modifier = Modifier , dbViewModel: DatabaseViewmodel = hiltViewModel()) {
+fun FavouritScreen(modifier: Modifier = Modifier.fillMaxSize().background(purple800)){
+    Column (modifier.padding(10.dp)){
+        FavouritComponent()
+    }
+}
+@Composable
+fun FavouritComponent( dbViewModel: DatabaseViewmodel = hiltViewModel()) {
     val favouritArtical by remember { dbViewModel.FavouritArtical }.collectAsState()
     val context = LocalContext.current
-    Spacer(modifier.padding(vertical = 10.dp))
+
 LazyColumn (
     contentPadding = PaddingValues(horizontal = 10.dp),
     verticalArrangement  = Arrangement.spacedBy(8.dp),
@@ -82,15 +90,14 @@ fun FavouritItem(
     var status by remember { mutableStateOf(false)  }
     val lifecycleOwner = LocalLifecycleOwner.current
     Surface(
-        shape = MaterialTheme.shapes.small,
-        modifier = Modifier
-
+        shape = MaterialTheme.shapes.large,
         ) {
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(purple800)
-                .padding(10.dp),
+                .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
@@ -110,13 +117,15 @@ fun FavouritItem(
                     text = "$auther",
                     modifier = Modifier.padding(horizontal = 16.dp).width(150.dp),
                     style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
                 androidx.compose.material.Text(
                     text = "$title",
                     modifier = Modifier.padding(horizontal = 16.dp).width(150.dp),
                     style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
 
             }

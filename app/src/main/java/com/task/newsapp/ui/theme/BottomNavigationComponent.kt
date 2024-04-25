@@ -2,6 +2,7 @@ package com.task.newsapp.ui.theme
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.BottomAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
@@ -28,18 +29,18 @@ fun AppBottomAppBar() {
     val navigationController = rememberNavController()
     val selected = remember { mutableStateOf(Icons.Default.Home) }
 
-
     Scaffold(
-
         bottomBar = {
-            BottomAppBar(contentColor = purple800) {
+            BottomAppBar(
+                backgroundColor = purple800, // Change the background color here
+                contentColor = Color.White
+            ) {
                 IconButton(
                     onClick = {
                         selected.value = Icons.Default.Home
                         navigationController.navigate(Screens.Home.screen) {
                             popUpTo(0)
                         }
-
                     },
                     modifier = Modifier.weight(1f)
                 ) {
@@ -51,15 +52,12 @@ fun AppBottomAppBar() {
                     )
                 }
 
-
-
                 IconButton(
                     onClick = {
                         selected.value = Icons.Default.Search
                         navigationController.navigate(Screens.Search.screen) {
                             popUpTo(0)
                         }
-
                     },
                     modifier = Modifier.weight(1f)
                 ) {
@@ -71,15 +69,12 @@ fun AppBottomAppBar() {
                     )
                 }
 
-
-
                 IconButton(
                     onClick = {
                         selected.value = Icons.Default.Favorite
                         navigationController.navigate(Screens.Favourit.screen) {
                             popUpTo(0)
                         }
-
                     },
                     modifier = Modifier.weight(1f)
                 ) {
@@ -90,7 +85,6 @@ fun AppBottomAppBar() {
                         tint = if (selected.value == Icons.Default.Favorite) Color.White else Color.DarkGray
                     )
                 }
-
             }
         }
     ) { paddingValues ->
@@ -100,19 +94,20 @@ fun AppBottomAppBar() {
             modifier = Modifier.padding(paddingValues)
         ) {
             composable(Screens.Home.screen) {
-               HomeScreen()
-
+                HomeScreen()
             }
             composable(Screens.Favourit.screen) {
-               FavouritScreen()
-
+                FavouritScreen()
             }
             composable(Screens.Search.screen) {
-              SearchScreen()
+                SearchScreen()
             }
         }
     }
 }
+
+
+
 
 sealed class Screens(val screen:String) {
     object Home : Screens("home")

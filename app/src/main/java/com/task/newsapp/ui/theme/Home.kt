@@ -1,16 +1,19 @@
 package com.task.newsapp.ui.theme
 
-
-
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
@@ -20,12 +23,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.task.newsapp.R
 
-
-
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier.background(purple800)) {
-
-    Column( modifier.padding(20.dp)) {
+fun HomeScreen(modifier: Modifier = Modifier.fillMaxSize().background(purple800)) {
+    Column(modifier.padding(20.dp)) {
         component()
         HomeSection("Apple Articals") {
             AppleArticals()
@@ -37,9 +38,7 @@ fun HomeScreen(modifier: Modifier = Modifier.background(purple800)) {
         HomeSection("Bitcoin Articals") {
             BitcoinArticals()
         }
-
     }
-
 }
 
 @Composable
@@ -54,11 +53,7 @@ fun component(modifier: Modifier = Modifier) {
             .height(70.dp),
         contentScale = ContentScale.Crop
     )
-
 }
-
-
-
 
 
 @Composable

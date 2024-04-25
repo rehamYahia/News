@@ -23,6 +23,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -79,7 +80,7 @@ fun TechCrunchItem(
 
 {
     //val favouritArtical by remember { dbViewModel.FavouritArtical }.collectAsState()
-    var status by remember { mutableStateOf(false)  }
+    var status by rememberSaveable { mutableStateOf(false)  }
 //    var flag  by remember { mutableStateOf(false)  }
     val lifecycleOwner = LocalLifecycleOwner.current
     Surface(

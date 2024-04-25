@@ -25,10 +25,14 @@ class DatabaseViewmodel @Inject constructor(private val articalRepo: ArticalRepo
 
 
 
+
+
     private suspend fun getFavouritArtical(){
         viewModelScope.launch() {
-             articalRepo.getArticalsFromDatabase().collect{artical->
-                _FavouritArtical.value = artical
+            articalRepo.getArticalsFromDatabase().collect{artical->
+                if (artical != null) {
+                    _FavouritArtical.value = artical
+                }
             }
         }
     }
