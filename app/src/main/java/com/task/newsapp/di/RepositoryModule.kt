@@ -1,7 +1,7 @@
 package com.task.newsapp.di
 
 import com.task.newsapp.database.dao.ArticalsDao
-import com.task.newsapp.network.BitcoinApiServices
+import com.task.newsapp.network.NetworkApiServices
 import com.task.newsapp.repositories.ArticalRepo
 import com.task.newsapp.repositories.ArticalRepoImp
 import dagger.Module
@@ -16,7 +16,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideBitcoinRepo(bitcoinApiServices: BitcoinApiServices , articalsDao: ArticalsDao):ArticalRepo{
+    fun provideBitcoinRepo(bitcoinApiServices: NetworkApiServices, articalsDao: ArticalsDao):ArticalRepo{
         return ArticalRepoImp(bitcoinApiServices, articalsDao)
     }
 

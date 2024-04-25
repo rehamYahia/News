@@ -54,8 +54,6 @@ fun BitcoinArticals(viewModel: BitcoinViewModel = hiltViewModel()) {
     }
 }
 
-
-
 @Composable
 fun BitcoinItem(
     auther: String? = null,
@@ -120,8 +118,6 @@ fun BitcoinItem(
 
                 )
                 Spacer(modifier = Modifier.padding(5.dp))
-
-
             }
 
         }

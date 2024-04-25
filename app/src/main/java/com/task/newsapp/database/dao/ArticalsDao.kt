@@ -14,10 +14,13 @@ interface ArticalsDao {
     fun getAllArticles(): Flow<List<ArticleDB>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(article: ArticleDB)
+    suspend fun insert(vararg article: ArticleDB)
 
-    @Delete
-    suspend fun delete(article: ArticleDB)
+    @Query("DELETE FROM ArticleTable WHERE articalid = :articleId")
+    suspend fun delete(articleId: Int)
+
+    @Query("SELECT * FROM ArticleTable WHERE author = :author AND title = :title AND content = :content AND description = :description AND url = :url AND urlToImage = :urlToImage And publishedAt =:publishedAt ")
+    suspend fun findArtical(author: String, title: String , content:String, description:String , url:String  , urlToImage:String , publishedAt:String): ArticleDB?
 
 
 }

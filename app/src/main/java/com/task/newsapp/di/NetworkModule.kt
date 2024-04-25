@@ -1,7 +1,7 @@
 package com.task.newsapp.di
 
 import com.task.newsapp.constant.Constants
-import com.task.newsapp.network.BitcoinApiServices
+import com.task.newsapp.network.NetworkApiServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object BitcoinNetworkModule {
+object NetworkModule {
 
     @Provides
     @Singleton
@@ -37,8 +37,8 @@ object BitcoinNetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiServices(retrofit: Retrofit): BitcoinApiServices {
-        return retrofit.create(BitcoinApiServices::class.java)
+    fun provideApiServices(retrofit: Retrofit): NetworkApiServices {
+        return retrofit.create(NetworkApiServices::class.java)
     }
 
 

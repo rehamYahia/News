@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    id ("kotlin-parcelize")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -102,8 +102,12 @@ dependencies {
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
-
     implementation ("androidx.compose.material:material:1.6.6")
+
+    //Paging
+    implementation ("androidx.paging:paging-compose:3.2.1")
+    //serialization
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 
 }
 kapt {

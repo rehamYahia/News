@@ -1,11 +1,14 @@
 package com.task.newsapp.database.entity
 
+import androidx.compose.ui.unit.Constraints
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.task.newsapp.constant.Constants
 
 
-@Entity(tableName = "ArticleTable")
+@Entity(tableName = Constants.TABLE_NAME  )
 data class ArticleDB(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "articalId")

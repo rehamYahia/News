@@ -1,5 +1,8 @@
 package com.task.newsapp.ui.theme
 
+
+
+import androidx.compose.material.Colors
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)
@@ -9,4 +12,15 @@ val Pink80 = Color(0xFFEFB8C8)
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
-val purple800 = Color(0xFF7884C6)
+val purple800 = Color(0xFF496E8C)
+val Colors.toAppBarContentColor : Color
+    get()= if(isLight) Color.White else Color.DarkGray
+
+val Colors.toAppBarBackgroundColor : Color
+    get()= if(isLight) purple800 else Color.Black
+
+
+val Colors.toBottomBarContentColor : Color
+    get()= if(isLight) purple800 else Color.Black
+val Colors.toBottomBarBackgroundColor : Color
+    get()= if(isLight) Color.White else Color.DarkGray

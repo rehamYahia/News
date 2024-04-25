@@ -78,8 +78,9 @@ fun TechCrunchItem(
 )
 
 {
-    val favouritArtical by remember { dbViewModel.FavouritArtical }.collectAsState()
+    //val favouritArtical by remember { dbViewModel.FavouritArtical }.collectAsState()
     var status by remember { mutableStateOf(false)  }
+//    var flag  by remember { mutableStateOf(false)  }
     val lifecycleOwner = LocalLifecycleOwner.current
     Surface(
         shape = MaterialTheme.shapes.small,
@@ -115,8 +116,6 @@ fun TechCrunchItem(
                     lifecycleOwner.lifecycleScope.launch {
                         dbViewModel.addArticalToRoom(ArticleDB(articalId = 0, author = articleDB.author , content = articleDB.content , description = articleDB.description , publishedAt = articleDB.publishedAt , title = articleDB.title , url = articleDB.url , urlToImage = articleDB.urlToImage))
                     }
-
-
                 },
                 modifier = Modifier.weight(1f)
             ) {
