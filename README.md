@@ -14,6 +14,7 @@
 - Retrofit
 - Coil
 - Room
+- Navigation Component
 - Coroutine
 - SOLID
 
@@ -23,4 +24,8 @@
 #### Request Parameters
 apiKey:  API key is required for authentication. You can provide it either as a parameter or via the X-Api-Key HTTP header.
 q: Keywords or phrases to search for in the article title and body.
+
+
+
+https://github.com/rehamYahia/News/assets/63594588/9ba34fb0-6d84-424f-82fa-b35da491cf79
 
